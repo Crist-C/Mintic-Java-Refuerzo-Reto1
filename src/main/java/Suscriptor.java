@@ -20,6 +20,9 @@ public class Suscriptor {
      * Default constructor
      */
     public Suscriptor() {
+        this.codigo = 0;
+        this.estado = 'S';
+        this.periodicidad = 0;
     }
 
     public Suscriptor(long codigo, char estado, int periodicidad) {
@@ -49,6 +52,7 @@ public class Suscriptor {
                     break;
                 case 4: pago =  270000;
                     break;
+                default: pago = 0;
             }
             
         } else if(estado == 'S' || estado == 's') pago = 0;

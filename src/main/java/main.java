@@ -23,10 +23,8 @@ public class main {
         char estado;
         int periodicidad;
         long pagoTotal = 0;
-        //Suscriptor suscriptores[];
-        //suscriptores = new Suscriptor[2];
-        Suscriptor suscriptor;
-        List<Suscriptor> suscriptores = new ArrayList<Suscriptor>();
+        Suscriptor suscriptores[];
+        
         
         System.out.println("------------------------------------");
         System.out.println("----  MINTIC - RETO DE REFUERZO ----");
@@ -38,7 +36,7 @@ public class main {
         
         System.out.println("\nIngrese la cantidad de suscriptores: ");
         N_Suscriptores = consola.nextInt();
-        
+        suscriptores = new Suscriptor[N_Suscriptores];
         
         for(int i = 0; i < N_Suscriptores; i++){
             
@@ -63,16 +61,34 @@ public class main {
             System.out.println("|____________________________________________|\n");
             periodicidad = consola.nextInt();       
             
-            suscriptor = new Suscriptor(codigo, estado, periodicidad);
-            suscriptores.add(i, suscriptor);
             
-            pagoTotal += suscriptores.get(i).CalcularPago();
+            // Como ejercicio se crean los objetos con los dos constructores
+            // Y se realiza la asignación de valores de manera directa al crear el objeto
+            // y por los métodos de acceso Getter y Setter
+            // Importante tener en cuenta que para usar los métodos Getter y Setter
+            // se debe primero instanciar el objeto. (Si se genera el error Java.NullPointerExceptión
+            // es por que los valores son tipo null, es decir no se han inicializado).
+            //
+            
+            // 1. Método 1: Instanciando el objeto pasando los valores de los atributos 
+            //              directamente en el constructor.
+            //suscriptores[i] = new Suscriptor(codigo, estado, periodicidad);
+            
+            
+            // 1. Método 2: Instanciamos primeto el objeto y luego se pasan los valores a los atributos 
+            //              por medio de los métodos Getters y Setters.
+            suscriptores[i] = new Suscriptor();
+            suscriptores[i].setCodigo(codigo);
+            suscriptores[i].setEstado(estado);
+            suscriptores[i].setPeriodicidad(periodicidad);
+            
+            pagoTotal += suscriptores[i].CalcularPago();
             
         }
        
-        for(int i = 0; i < suscriptores.size(); i++){
+        for(int i = 0; i < suscriptores.length; i++){
             System.out.println("El valor a pagar para el suscriptor del código "
-                +suscriptores.get(i).getCodigo()+" es: "+suscriptores.get(i).CalcularPago());
+                +suscriptores[i].getCodigo()+" es: "+suscriptores[i].CalcularPago());
         }
             System.out.println("El valot total por pagar es: "+pagoTotal);
         
